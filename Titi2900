@@ -1,0 +1,27 @@
+#create rds db using terraform
+resource "aws_db_instance" "titi102" {
+    db_subnet_group_name = "titi102-subnet-group"
+    
+    instance_class = "db.t4g.micro"
+    engine = "mysql"
+    engine_version = "8.0.41"
+    allocated_storage = 20
+    identifier = "database008"
+    username = ""
+    password = ""
+    publicly_accessible = true
+    skip_final_snapshot = true
+
+    tags = {
+        name ="myrdsdb"
+    }
+
+ }
+ resource "aws_db_subnet_group" "titi102_subnet_group" {
+  name       = "titi102-subnet-group"
+  subnet_ids = ["subnet-0c5ca135ab9cad3c8", "subnet-01f5913ba188e879f"] 
+
+  tags = {
+    Name = "titi102-subnet-group"
+  }
+}
